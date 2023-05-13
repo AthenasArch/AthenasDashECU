@@ -3,6 +3,7 @@ import sys
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from analoggaugewidget import *
+from athenasUtils import *
 
 # Importar a classe Ui_MainWindow gerada do arquivo Python convertido
 from ui_dashAthenas import *
@@ -162,16 +163,96 @@ class MainWindow(QMainWindow):
 
 
         # Selecionar tema predefinido do medidor
-        self.ui.widgetRpm.setGaugeTheme(24)
+        self.ui.widgetRPM.setGaugeTheme(24)
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetRpm.units = " RPM"
+        self.ui.widgetRPM.units = " RPM"
         # self.ui.widgetRpm.value_fontname = "DS-Digital"
 
         # seta o valor valores de escala do Gauge:
-        self.ui.widgetRpm.minValue = 0 
-        self.ui.widgetRpm.maxValue = 300
-        self.ui.widgetRpm.scalaCount = 15
+        self.ui.widgetRPM.minValue = 0 
+        self.ui.widgetRPM.maxValue = 12
+        self.ui.widgetRPM.scalaCount = 12
+
+    def styleAnalogGaugeTPS(self):
+        # *********************************************
+        # customizar os medidores:
+        # *********************************************
+        # aqui controla a barra de velocidade
+        # self.ui.widget.enableBarGraph = False
+
+
+        # Selecionar tema predefinido do medidor
+        self.ui.widgetTPS.setGaugeTheme(24)
+
+        # seta a unidade de medida do Gauge:
+        self.ui.widgetTPS.units = " TPS"
+        # self.ui.widgetRpm.value_fontname = "DS-Digital"
+
+        # seta o valor valores de escala do Gauge:
+        self.ui.widgetTPS.minValue = 0 
+        self.ui.widgetTPS.maxValue = 100
+        self.ui.widgetTPS.scalaCount = 10
+
+    def styleAnalogGaugeDuty(self):
+        # *********************************************
+        # customizar os medidores:
+        # *********************************************
+        # aqui controla a barra de velocidade
+        # self.ui.widget.enableBarGraph = False
+
+
+        # Selecionar tema predefinido do medidor
+        self.ui.widgetDuty.setGaugeTheme(24)
+
+        # seta a unidade de medida do Gauge:
+        self.ui.widgetDuty.units = " Duty"
+        # self.ui.widgetRpm.value_fontname = "DS-Digital"
+
+        # seta o valor valores de escala do Gauge:
+        self.ui.widgetDuty.minValue = 0 
+        self.ui.widgetDuty.maxValue = 300
+        self.ui.widgetDuty.scalaCount = 15
+
+    def styleAnalogGaugePW(self):
+        # *********************************************
+        # customizar os medidores:
+        # *********************************************
+        # aqui controla a barra de velocidade
+        # self.ui.widget.enableBarGraph = False
+
+
+        # Selecionar tema predefinido do medidor
+        self.ui.widgetPW.setGaugeTheme(24)
+
+        # seta a unidade de medida do Gauge:
+        self.ui.widgetPW.units = " PW"
+        # self.ui.widgetRpm.value_fontname = "DS-Digital"
+
+        # seta o valor valores de escala do Gauge:
+        self.ui.widgetPW.minValue = 0 
+        self.ui.widgetPW.maxValue = 300
+        self.ui.widgetPW.scalaCount = 15
+
+    def styleAnalogGaugeMAP(self):
+        # *********************************************
+        # customizar os medidores:
+        # *********************************************
+        # aqui controla a barra de velocidade
+        # self.ui.widget.enableBarGraph = False
+
+
+        # Selecionar tema predefinido do medidor
+        self.ui.widgetMAP.setGaugeTheme(24)
+
+        # seta a unidade de medida do Gauge:
+        self.ui.widgetMAP.units = " Engine\nMAP"
+        # self.ui.widgetRpm.value_fontname = "DS-Digital"
+
+        # seta o valor valores de escala do Gauge:
+        self.ui.widgetMAP.minValue = 0 
+        self.ui.widgetMAP.maxValue = 300
+        self.ui.widgetMAP.scalaCount = 15
 
     def to_page_1(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
@@ -187,10 +268,18 @@ class MainWindow(QMainWindow):
 
         self.styleAnalogGaugeSpeed()
         self.styleAnalogGaugeRPM()
+        self.styleAnalogGaugeDuty()
+        self.styleAnalogGaugeMAP()
+        self.styleAnalogGaugePW()
+        self.styleAnalogGaugeTPS()
+
         self.autoUpdateValue()
 
     def autoUpdateValue(self):
 
+        minCntValue = 0
+        maxCntValue = 300
+        
         if self.currentPage == 3:
             # Aqui você atualizaria o valor que você quer mostrar no medidor.
             # Por exemplo, vamos apenas incrementar o valor atual.
@@ -200,14 +289,17 @@ class MainWindow(QMainWindow):
             else: 
                 self.myValue -= 1
 
-            if self.myValue > 300:
+            if self.myValue > maxCntValue:
                 self.toggleValue = 1
             elif self.myValue <= 1:
                 self.toggleValue = 0
 
-            self.ui.widgetRpm.updateValue(self.myValue)
+            self.ui.widgetRPM.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetRPM.minValue, self.ui.widgetRPM.maxValue))
             self.ui.widgetSpeed.updateValue(self.myValue)
-
+            self.ui.widgetDuty.updateValue(self.myValue)
+            self.ui.widgetPW.updateValue(self.myValue)
+            self.ui.widgetTPS.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetTPS.minValue, self.ui.widgetTPS.maxValue))
+            self.ui.widgetMAP.updateValue(self.myValue)
 
     def to_main_page(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_0_main)
