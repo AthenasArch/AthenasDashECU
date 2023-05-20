@@ -69,4 +69,4 @@ if __name__ == '__main__':
     window.show()
     
     # Executar o loop de eventos principal do aplicativo
-    sys.exit(app.exec_())
+    sys.exit(app.exec_()) 

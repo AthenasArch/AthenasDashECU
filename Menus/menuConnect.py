@@ -28,7 +28,8 @@ class MenuConnect:
                 self.runCommuncation()  
 
     def runCommuncation(self):
-        self.speeduino.run()
+        # self.speeduino.run()
+        pass
 
     def checkPorts(self):
         available_ports = sorted(Speeduino.list_ports())

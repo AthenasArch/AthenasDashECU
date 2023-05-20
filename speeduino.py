@@ -3,6 +3,7 @@ import time
 import struct
 import serial.tools.list_ports
 import logging
+from PyQt5.QtCore import QThread, pyqtSignal
 
 SPEEDUINO_CMD_A_CURR_STATUS = ('A', 120)
 SPEEDUINO_CMD_S_SIGNATURE = ('S', 8)
@@ -22,23 +23,53 @@ SPEEDUINO_CMD_z_SET_CONFIG2 = ('z', 8)
 # Configurar o logging
 logging.basicConfig(level=logging.DEBUG)
 
+class SpeeduinoRequestThread(QThread):
+    dataReceived = pyqtSignal(object)  # Signal to emit when data is received
+
+    def __init__(self, speeduino):
+        QThread.__init__(self)
+        self.speeduino = speeduino
+        print("Thread iniciada...")
+
+    def run(self):
+        # This is the code that will be run in a separate thread
+        while True:  # Keep running the loop as long as the thread is alive
+            print("Thread - Solicitando dados para speeduino...")
+            cmd = SPEEDUINO_CMD_A_CURR_STATUS
+            data = self.speeduino.request_speeduino_data(cmd)
+            # print(f"Dados recebidos: {data}")
+            if data is not None:
+                self.dataReceived.emit(data)  # Emit a signal with the received data
+                self.speeduino.set_data_fields(data)
+                self.speeduino.printDeubgData()
+            time.sleep(self.speeduino.TIME_REQUEST_DATA)  # Pause between requests
+
+
 class Speeduino:
     def __init__(self, port):
         self.last_request_time = time.time()  # adicione essa linha no __init__
         self.TIME_REQUEST_DATA = 0.5
         self.connection_status = False # "Falha na conexão com a Speeduino."
+        
         try:
             self.ser = serial.Serial(port, 115200, timeout=1)
             time.sleep(2)  # Aguarde 2 segundos para a conexão ser estabelecida
-
-            cmd = SPEEDUINO_CMD_A_CURR_STATUS
-
-            data = self.request_speeduino_data(cmd)
-            if data is not None:
-                self.set_data_fields(data)
-                self.connection_status = True # "Conexão com a Speeduino estabelecida com sucesso."
+            
+            # cmd = SPEEDUINO_CMD_A_CURR_STATUS
+            self.connection_status = True
+            if self.connection_status:
+                # Se a conexão for bem-sucedida, inicie a thread
+                self.request_thread = SpeeduinoRequestThread(self)
+                self.request_thread.dataReceived.connect(self.set_data_fields)  # Conectar o sinal a um slot
+                self.request_thread.start()  # Iniciar a thread
             else:
-                logging.error("Failed to retrieve data from Speeduino.")
+                logging.error("Failed to connect to Speeduino.")
+            # data = self.request_speeduino_data(cmd)
+            # if data is not None:
+            #     self.set_data_fields(data)
+            #     self.connection_status = True # "Conexão com a Speeduino estabelecida com sucesso."
+            # else:
+            #     logging.error("Failed to retrieve data from Speeduino.")
         except serial.SerialException as e:
             logging.error(f"Failed to open port {port}: {e}")
         except Exception as e:
@@ -76,10 +107,21 @@ class Speeduino:
     def close(self):
         self.ser.close()
 
+    def printDeubgData(self):
+        print("\r\r\r\n\n\nSPEEDUINO DATA: ")
+        print("CNT: ", self.CNT)
+        print("TPS: ", self.TPS)
+        print("Battery Voltage: ", self.battery10)
+        print("RPM: ", self.RPM)
+        print("MAP: ", self.MAP)
+        print("IAT: ", self.IAT)
+        print("Coolant: ", self.coolant)
+
     def run(self):
+        print("Esntou no run")
         try:
             while True:
-                self.update()
+                # self.update()
 
                 # Agora você pode acessar os dados atualizados diretamente
                 # das variáveis de instância de Speeduino.
@@ -92,7 +134,7 @@ class Speeduino:
                 print("IAT: ", self.IAT)
                 print("Coolant: ", self.coolant)
 
-                time.sleep(1)
+                # time.sleep(1)
         except KeyboardInterrupt:
             print("Program terminated.")
             self.close()
@@ -184,7 +226,6 @@ class Speeduino:
         self.advance2 = data[117]
         self.TS_SD_Status = data[118]
         self.EMAP = data[119] + (data[120] << 8)
-        
 # def main():
 #     print("Main")
 #     Speeduino.list_ports()
