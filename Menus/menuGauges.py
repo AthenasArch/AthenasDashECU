@@ -12,24 +12,54 @@ from athenasUtils import *
 from ui_dashAthenas import *
 
 class MenuGauges:
-    def __init__(self, ui):
+    def __init__(self, ui, speeduino):
         self.ui = ui
         self.myValue = 1
         self.toggleValue = 0
+        self.speeduino = speeduino
+        self.SPDConnected = False
+        self.oldSDPConnectedStatus = False # controla o status da cor dos medidores
 
         # define as donfiguracoes de timer:
         self.timer = QTimer()
         self.timer.timeout.connect(self.autoUpdateValue)
-        self.timer.start(50)  # Atualizar a cada 1000ms, ou 1 segundo
+        self.timer.start(100)  # Atualizar a cada 1000ms, ou 1 segundo
 
-        self.styleAnalogGaugeSpeed()
-        self.styleAnalogGaugeRPM()
-        self.styleAnalogGaugeDuty()
-        self.styleAnalogGaugeMAP()
-        self.styleAnalogGaugePW()
-        self.styleAnalogGaugeTPS()
+        # self.styleAnalogGaugeSpeed()
+        self.initAnalogGaugeSpeed()
+        self.initAnalogGaugeRPM()
+        self.initAnalogGaugeDuty()
+        self.initAnalogGaugeMAP()
+        self.initAnalogGaugePW()
+        self.initAnalogGaugeTPS()
 
-    def styleAnalogGaugeSpeed(self):
+        self.updateAllStyleAnalogGauge()
+
+    def updateAllStyleAnalogGauge(self):
+        self.styleAnalogGaugeSpeed(self.SPDConnected)
+        self.styleAnalogGaugeDuty(self.SPDConnected)
+        self.styleAnalogGaugeMAP(self.SPDConnected)
+        self.styleAnalogGaugePW(self.SPDConnected)
+        self.styleAnalogGaugeRPM(self.SPDConnected)
+        self.styleAnalogGaugeTPS(self.SPDConnected)
+
+    def styleAnalogGaugeSpeed(self, status):
+        if status == False:
+            self.ui.widgetSpeed.setGaugeTheme(4)
+        else:
+            self.ui.widgetSpeed.setOuterCircleColor(
+                color1 = "#002523",
+                color2 = "#990008",
+                color3 = "#00F6E9"
+            )
+
+            self.ui.widgetSpeed.setCustomGaugeTheme(
+                color1 = "#002523",
+                color2 = "#990008",
+                color3 = "#00F6E9"
+            )
+    
+    def initAnalogGaugeSpeed(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -68,11 +98,11 @@ class MenuGauges:
         )
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetSpeed.units = " Km/h"
+        self.ui.widgetSpeed.units = " CNT"
 
         # seta o valor valores de escala do Gauge:
         self.ui.widgetSpeed.minValue = 0 
-        self.ui.widgetSpeed.maxValue = 300
+        self.ui.widgetSpeed.maxValue = 255
         self.ui.widgetSpeed.scalaCount = 15 
 
         # # Definir a posição inicial do ponteiro na escala
@@ -144,8 +174,13 @@ class MenuGauges:
 
 
 
+    def styleAnalogGaugeRPM(self, status):
+        if status == False:
+            self.ui.widgetRPM.setGaugeTheme(4)
+        else:
+            self.ui.widgetRPM.setGaugeTheme(24)
 
-    def styleAnalogGaugeRPM(self):
+    def initAnalogGaugeRPM(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -157,15 +192,21 @@ class MenuGauges:
         self.ui.widgetRPM.setGaugeTheme(24)
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetRPM.units = " RPM"
+        self.ui.widgetRPM.units = " Volt"
         # self.ui.widgetRpm.value_fontname = "DS-Digital"
 
         # seta o valor valores de escala do Gauge:
         self.ui.widgetRPM.minValue = 0 
-        self.ui.widgetRPM.maxValue = 12
-        self.ui.widgetRPM.scalaCount = 12
+        self.ui.widgetRPM.maxValue = 18
+        self.ui.widgetRPM.scalaCount = 18
 
-    def styleAnalogGaugeTPS(self):
+    def styleAnalogGaugeTPS(self, status):
+        if status == False:
+            self.ui.widgetTPS.setGaugeTheme(4)
+        else:
+            self.ui.widgetTPS.setGaugeTheme(24)
+
+    def initAnalogGaugeTPS(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -184,8 +225,14 @@ class MenuGauges:
         self.ui.widgetTPS.minValue = 0 
         self.ui.widgetTPS.maxValue = 100
         self.ui.widgetTPS.scalaCount = 10
+    
+    def styleAnalogGaugeDuty(self, status):
+        if status == False:
+            self.ui.widgetDuty.setGaugeTheme(4)
+        else:
+            self.ui.widgetDuty.setGaugeTheme(24)
 
-    def styleAnalogGaugeDuty(self):
+    def initAnalogGaugeDuty(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -205,7 +252,13 @@ class MenuGauges:
         self.ui.widgetDuty.maxValue = 300
         self.ui.widgetDuty.scalaCount = 15
 
-    def styleAnalogGaugePW(self):
+    def styleAnalogGaugePW(self, status):
+        if status == False:
+            self.ui.widgetPW.setGaugeTheme(4)
+        else:
+            self.ui.widgetPW.setGaugeTheme(24)
+
+    def initAnalogGaugePW(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -225,7 +278,13 @@ class MenuGauges:
         self.ui.widgetPW.maxValue = 300
         self.ui.widgetPW.scalaCount = 15
 
-    def styleAnalogGaugeMAP(self):
+    def styleAnalogGaugeMAP(self, status):
+        if status == False:
+            self.ui.widgetMAP.setGaugeTheme(4)
+        else:
+            self.ui.widgetMAP.setGaugeTheme(24)
+
+    def initAnalogGaugeMAP(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -245,8 +304,7 @@ class MenuGauges:
         self.ui.widgetMAP.maxValue = 300
         self.ui.widgetMAP.scalaCount = 15
 
-    def autoUpdateValue(self):
-
+    def testMode(self):
         minCntValue = 0
         maxCntValue = 300
         
@@ -270,3 +328,40 @@ class MenuGauges:
         self.ui.widgetPW.updateValue(self.myValue)
         self.ui.widgetTPS.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetTPS.minValue, self.ui.widgetTPS.maxValue))
         self.ui.widgetMAP.updateValue(self.myValue)
+
+    def autoUpdateValue(self):
+
+        testeMode = False # habilita o modo de teste dos gauges
+        if testeMode == True:
+            self.testMode()
+            return
+
+        if (self.speeduino.connection_status == True & self.speeduino.received_data == True):
+            self.SPDConnected = True
+            self.ui.widgetSpeed.updateValue(self.speeduino.CNT)
+            self.ui.widgetRPM.updateValue(self.speeduino.battery10)
+            self.ui.widgetDuty.updateValue(0)
+            self.ui.widgetPW.updateValue(0)
+            self.ui.widgetTPS.updateValue(0)
+            self.ui.widgetMAP.updateValue(0)
+            self.updateAllStyleAnalogGauge()
+        else:
+            self.SDPConnected = False
+            self.ui.widgetSpeed.updateValue(0)
+            self.ui.widgetRPM.updateValue(0)
+            self.ui.widgetDuty.updateValue(0)
+            self.ui.widgetPW.updateValue(0)
+            self.ui.widgetTPS.updateValue(0)
+            self.ui.widgetMAP.updateValue(0)
+            self.updateAllStyleAnalogGauge()
+
+        # if self.oldSDPConnectedStatus != self.SDPConnected:
+            
+        #     self.oldSDPConnectedStatus = self.SDPConnected
+
+        # self.ui.widgetRPM.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetRPM.minValue, self.ui.widgetRPM.maxValue))
+        # 
+        # self.ui.widgetDuty.updateValue(self.myValue)
+        # self.ui.widgetPW.updateValue(self.myValue)
+        # self.ui.widgetTPS.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetTPS.minValue, self.ui.widgetTPS.maxValue))
+        # self.ui.widgetMAP.updateValue(self.myValue)

@@ -6,6 +6,7 @@ from analoggaugewidget import *
 from athenasUtils import *
 from Menus.menuGauges import MenuGauges
 from Menus.menuConnect import MenuConnect
+from speeduino import *
 
 # Importar a classe Ui_MainWindow gerada do arquivo Python convertido
 from ui_dashAthenas import *
@@ -18,12 +19,16 @@ class MainWindow(QMainWindow):
         # Configurar a janela principal da interface do usuário
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        
+        # define as donfiguracoes de timer:
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.mainPageRun)
+        self.timer.start(250)  # Atualizar a cada 1000ms, ou 1 segundo
 
-        # self.menuGauges = None
-        # self.menuConnect = None
-        # Instanciar os menus na inicialização
-        self.menuGauges = MenuGauges(self.ui)
-        self.menuConnect = MenuConnect(self.ui)
+        self.speeduino = Speeduino()
+
+        self.menuGauges = MenuGauges(self.ui, self.speeduino)
+        self.menuConnect = MenuConnect(self.ui, self.speeduino)
 
         # utilizo isso aqui para saber em qual pagina esta atualmente
         self.currentPage = None
@@ -42,9 +47,24 @@ class MainWindow(QMainWindow):
         self.ui.bntReturn_2.clicked.connect(self.to_main_page)
         self.ui.bntReturn_3.clicked.connect(self.to_main_page)
 
+    def mainPageRun(self):
+        if self.currentPage == 1:
+            if self.speeduino.connection_status == True:
+                self.ui.labelComStatus.setText("ON")
+                self.ui.labelComStatus.setStyleSheet("background-color: green;")
+                
+                if self.speeduino.received_data == True:
+                    self.ui.labelComCnt.setText(f"{self.speeduino.CNT}")
+            else:
+                self.ui.labelComStatus.setText("OFF")
+                self.ui.labelComStatus.setStyleSheet("background-color: red;")
+                self.ui.labelComCnt.setText(f"-")
+
     def to_page_1(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
         self.currentPage = 1
+
+        
         # self.menuConnect = MenuConnect(self.ui) # poderia instanciar o menu quando for utilizar ele para otimizar
 
     def to_page_2(self):

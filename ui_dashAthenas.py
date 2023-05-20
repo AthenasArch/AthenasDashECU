@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'dashAthenasBmtPmm.ui'
+## Form generated from reading UI file 'dashAthenasoqOeHB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -718,7 +718,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -729,7 +729,7 @@ class Ui_MainWindow(object):
         self.btnPage2.setText(QCoreApplication.translate("MainWindow", u"PAGE 2", None))
         self.btnPage3.setText(QCoreApplication.translate("MainWindow", u"MEDIDOR", None))
         self.btnPage1.setText(QCoreApplication.translate("MainWindow", u"CONECTAR", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"ATHENAS DASH SPEEDUINO - V1.1.12", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"ATHENAS DASH SPEEDUINO - V1.1.15", None))
         self.btnPage5.setText(QCoreApplication.translate("MainWindow", u"PAGE 5", None))
         self.btnPage6.setText(QCoreApplication.translate("MainWindow", u"PAGE 6", None))
         self.btnPage4.setText(QCoreApplication.translate("MainWindow", u"PAGE 4", None))
@@ -745,7 +745,13 @@ class Ui_MainWindow(object):
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"1 - SELECIONE A PORTA SERIAL", None))
         self.bntConnect.setText(QCoreApplication.translate("MainWindow", u"CONECTAR", None))
         self.debugTextTermina.setPlainText(QCoreApplication.translate("MainWindow", u"DESCONECTADO.\n"
-"Dados recebidos aqui...\n"
+"\n"
+"1 - Primeiro pressione o bot\u00e3o \"Check ports\" \n"
+"para verificar em qual porta o Speeduino est\u00e1 conectado.\n"
+"\n"
+"2 - Depois selecione a porta para conectar.\n"
+"\n"
+"3 - Pressione o bot\u00e3o de conectar\n"
 "", None))
         self.comboBoxPortaCom_2.setItemText(0, QCoreApplication.translate("MainWindow", u"     -", None))
 

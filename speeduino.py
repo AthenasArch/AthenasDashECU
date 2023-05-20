@@ -34,23 +34,35 @@ class SpeeduinoRequestThread(QThread):
     def run(self):
         # This is the code that will be run in a separate thread
         while True:  # Keep running the loop as long as the thread is alive
-            print("Thread - Solicitando dados para speeduino...")
+            # print("Thread - Solicitando dados para speeduino...")
             cmd = SPEEDUINO_CMD_A_CURR_STATUS
             data = self.speeduino.request_speeduino_data(cmd)
             # print(f"Dados recebidos: {data}")
             if data is not None:
                 self.dataReceived.emit(data)  # Emit a signal with the received data
                 self.speeduino.set_data_fields(data)
-                self.speeduino.printDeubgData()
+                self.speeduino.received_data = True
+                # self.speeduino.printDeubgData()
+            else:
+                self.speeduino.received_data = False  # Atualiza o novo atributo
             time.sleep(self.speeduino.TIME_REQUEST_DATA)  # Pause between requests
 
 
 class Speeduino:
-    def __init__(self, port):
-        self.last_request_time = time.time()  # adicione essa linha no __init__
+    def __init__(self):
+        self.port = ""
+        self.last_request_time = time.time()  
         self.TIME_REQUEST_DATA = 0.5
-        self.connection_status = False # "Falha na conexão com a Speeduino."
-        
+        self.connection_status = False
+        self.received_data = False
+
+    def setFailedComm(self, msg):
+        print(f"Falha na comunicacao: {msg}")
+        self.connection_status = False
+        self.received_data = False
+
+
+    def connect(self, port):
         try:
             self.ser = serial.Serial(port, 115200, timeout=1)
             time.sleep(2)  # Aguarde 2 segundos para a conexão ser estabelecida
@@ -71,9 +83,39 @@ class Speeduino:
             # else:
             #     logging.error("Failed to retrieve data from Speeduino.")
         except serial.SerialException as e:
-            logging.error(f"Failed to open port {port}: {e}")
+            self.setFailedComm(f"Failed to open port {port}: {e}")
         except Exception as e:
-            logging.error(f"An unexpected error occurred: {e}")
+            self.setFailedComm(e)
+
+    # def __init__(self, port):
+    #     self.last_request_time = time.time()  # adicione essa linha no __init__
+    #     self.TIME_REQUEST_DATA = 0.5
+    #     self.connection_status = False # "Falha na conexão com a Speeduino."
+    #     self.received_data = False  # Status de dados recebidos da speeduino
+
+    #     try:
+    #         self.ser = serial.Serial(port, 115200, timeout=1)
+    #         time.sleep(2)  # Aguarde 2 segundos para a conexão ser estabelecida
+            
+    #         # cmd = SPEEDUINO_CMD_A_CURR_STATUS
+    #         self.connection_status = True
+    #         if self.connection_status:
+    #             # Se a conexão for bem-sucedida, inicie a thread
+    #             self.request_thread = SpeeduinoRequestThread(self)
+    #             self.request_thread.dataReceived.connect(self.set_data_fields)  # Conectar o sinal a um slot
+    #             self.request_thread.start()  # Iniciar a thread
+    #         else:
+    #             logging.error("Failed to connect to Speeduino.")
+    #         # data = self.request_speeduino_data(cmd)
+    #         # if data is not None:
+    #         #     self.set_data_fields(data)
+    #         #     self.connection_status = True # "Conexão com a Speeduino estabelecida com sucesso."
+    #         # else:
+    #         #     logging.error("Failed to retrieve data from Speeduino.")
+    #     except serial.SerialException as e:
+    #         logging.error(f"Failed to open port {port}: {e}")
+    #     except Exception as e:
+    #         logging.error(f"An unexpected error occurred: {e}")
 
     def setTimeRequestData(self, newTime):
         self.TIME_REQUEST_DATA = newTime
@@ -93,9 +135,9 @@ class Speeduino:
                     return None
                 return response
         except serial.SerialTimeoutException as e:
-            logging.error(f"Timeout occurred: {e}")
+            self.setFailedComm(f"Timeout occurred: {e}")
         except Exception as e:
-            logging.error(f"An unexpected error occurred: {e}")
+            self.setFailedComm(f"An unexpected error occurred: {e}")
 
     def update(self):
         # Este método pode ser chamado para atualizar os dados da Speeduino
