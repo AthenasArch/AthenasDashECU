@@ -1,6 +1,7 @@
 import os
 import sys
 from PyQt5 import uic, QtWidgets
+# from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from analoggaugewidget import *
 from athenasUtils import *

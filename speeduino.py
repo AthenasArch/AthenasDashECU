@@ -52,7 +52,7 @@ class Speeduino:
     def __init__(self):
         self.port = ""
         self.last_request_time = time.time()  
-        self.TIME_REQUEST_DATA = 0.5
+        self.TIME_REQUEST_DATA = 0.4
         self.connection_status = False
         self.received_data = False
 

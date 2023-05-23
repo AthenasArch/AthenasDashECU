@@ -1,10 +1,10 @@
 # menuConnect.py
-from PyQt5.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QMainWindow
 from analoggaugewidget import *
 from athenasUtils import *
-from PyQt5.QtCore import QTimer
-from PyQt5 import uic, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtCore import QTimer
+from PyQt6 import uic, QtWidgets
+from PyQt6.QtWidgets import QMainWindow, QApplication
 from analoggaugewidget import *
 from athenasUtils import *
 
@@ -23,7 +23,7 @@ class MenuGauges:
         # define as donfiguracoes de timer:
         self.timer = QTimer()
         self.timer.timeout.connect(self.autoUpdateValue)
-        self.timer.start(100)  # Atualizar a cada 1000ms, ou 1 segundo
+        self.timer.start(50)  # Atualizar a cada 1000ms, ou 1 segundo
 
         # self.styleAnalogGaugeSpeed()
         self.initAnalogGaugeSpeed()
@@ -197,7 +197,7 @@ class MenuGauges:
 
         # seta o valor valores de escala do Gauge:
         self.ui.widgetRPM.minValue = 0 
-        self.ui.widgetRPM.maxValue = 18
+        self.ui.widgetRPM.maxValue = 180
         self.ui.widgetRPM.scalaCount = 18
 
     def styleAnalogGaugeTPS(self, status):
