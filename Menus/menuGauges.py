@@ -12,11 +12,12 @@ from athenasUtils import *
 from ui_dashAthenas import *
 
 class MenuGauges:
-    def __init__(self, ui, speeduino):
+    def __init__(self, ui, speeduino, obd2):
         self.ui = ui
         self.myValue = 1
         self.toggleValue = 0
         self.speeduino = speeduino
+        self.obd2 = obd2
         self.SPDConnected = False
         self.oldSDPConnectedStatus = False # controla o status da cor dos medidores
 
@@ -28,20 +29,20 @@ class MenuGauges:
         # self.styleAnalogGaugeSpeed()
         self.initAnalogGaugeSpeed()
         self.initAnalogGaugeRPM()
-        self.initAnalogGaugeDuty()
-        self.initAnalogGaugeMAP()
-        self.initAnalogGaugePW()
-        self.initAnalogGaugeTPS()
+        self.initAnalogGaugeCoolantTemp()
+        self.initAnalogGaugeOilPressure()
+        self.initAnalogGaugeFuel()
+        self.initAnalogGaugeBattery()
 
         self.updateAllStyleAnalogGauge()
 
     def updateAllStyleAnalogGauge(self):
         self.styleAnalogGaugeSpeed(self.SPDConnected)
-        self.styleAnalogGaugeDuty(self.SPDConnected)
-        self.styleAnalogGaugeMAP(self.SPDConnected)
-        self.styleAnalogGaugePW(self.SPDConnected)
+        self.styleAnalogGaugeCoolantTemp(self.SPDConnected)
+        self.styleAnalogGaugeOilPressure(self.SPDConnected)
+        self.styleAnalogGaugeFuel(self.SPDConnected)
         self.styleAnalogGaugeRPM(self.SPDConnected)
-        self.styleAnalogGaugeTPS(self.SPDConnected)
+        self.styleAnalogGaugeBattery(self.SPDConnected)
 
     def styleAnalogGaugeSpeed(self, status):
         if status == False:
@@ -98,12 +99,12 @@ class MenuGauges:
         )
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetSpeed.units = " CNT"
+        self.ui.widgetSpeed.units = " Km/h"
 
         # seta o valor valores de escala do Gauge:
         self.ui.widgetSpeed.minValue = 0 
-        self.ui.widgetSpeed.maxValue = 255
-        self.ui.widgetSpeed.scalaCount = 15 
+        self.ui.widgetSpeed.maxValue = 220
+        self.ui.widgetSpeed.scalaCount = 12 
 
         # # Definir a posição inicial do ponteiro na escala
         # self.ui.widget.updateValue(int((self.ui.widget.maxValue - self.ui.widget.minValue) / 2))
@@ -192,21 +193,21 @@ class MenuGauges:
         self.ui.widgetRPM.setGaugeTheme(24)
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetRPM.units = " Volt"
+        self.ui.widgetRPM.units = " RPM"
         # self.ui.widgetRpm.value_fontname = "DS-Digital"
 
         # seta o valor valores de escala do Gauge:
         self.ui.widgetRPM.minValue = 0 
-        self.ui.widgetRPM.maxValue = 180
-        self.ui.widgetRPM.scalaCount = 18
+        self.ui.widgetRPM.maxValue = 8000
+        self.ui.widgetRPM.scalaCount = 12
 
-    def styleAnalogGaugeTPS(self, status):
+    def styleAnalogGaugeCoolantTemp(self, status):
         if status == False:
-            self.ui.widgetTPS.setGaugeTheme(4)
+            self.ui.widgetCoolantTemp.setGaugeTheme(4)
         else:
-            self.ui.widgetTPS.setGaugeTheme(24)
+            self.ui.widgetCoolantTemp.setGaugeTheme(24)
 
-    def initAnalogGaugeTPS(self):
+    def initAnalogGaugeCoolantTemp(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -215,24 +216,24 @@ class MenuGauges:
 
 
         # Selecionar tema predefinido do medidor
-        self.ui.widgetTPS.setGaugeTheme(24)
+        self.ui.widgetCoolantTemp.setGaugeTheme(24)
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetTPS.units = " TPS"
+        self.ui.widgetCoolantTemp.units = " Temp"
         # self.ui.widgetRpm.value_fontname = "DS-Digital"
 
         # seta o valor valores de escala do Gauge:
-        self.ui.widgetTPS.minValue = 0 
-        self.ui.widgetTPS.maxValue = 100
-        self.ui.widgetTPS.scalaCount = 10
+        self.ui.widgetCoolantTemp.minValue = 0 
+        self.ui.widgetCoolantTemp.maxValue = 125
+        self.ui.widgetCoolantTemp.scalaCount = 12
     
-    def styleAnalogGaugeDuty(self, status):
+    def styleAnalogGaugeOilPressure(self, status):
         if status == False:
-            self.ui.widgetDuty.setGaugeTheme(4)
+            self.ui.widgetOilPressure.setGaugeTheme(4)
         else:
-            self.ui.widgetDuty.setGaugeTheme(24)
+            self.ui.widgetOilPressure.setGaugeTheme(24)
 
-    def initAnalogGaugeDuty(self):
+    def initAnalogGaugeOilPressure(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -241,24 +242,24 @@ class MenuGauges:
 
 
         # Selecionar tema predefinido do medidor
-        self.ui.widgetDuty.setGaugeTheme(24)
+        self.ui.widgetOilPressure.setGaugeTheme(24)
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetDuty.units = " Duty"
+        self.ui.widgetOilPressure.units = " Oil"
         # self.ui.widgetRpm.value_fontname = "DS-Digital"
 
         # seta o valor valores de escala do Gauge:
-        self.ui.widgetDuty.minValue = 0 
-        self.ui.widgetDuty.maxValue = 300
-        self.ui.widgetDuty.scalaCount = 15
+        self.ui.widgetOilPressure.minValue = 0 
+        self.ui.widgetOilPressure.maxValue = 100
+        self.ui.widgetOilPressure.scalaCount = 12
 
-    def styleAnalogGaugePW(self, status):
+    def styleAnalogGaugeFuel(self, status):
         if status == False:
-            self.ui.widgetPW.setGaugeTheme(4)
+            self.ui.widgetFuel.setGaugeTheme(4)
         else:
-            self.ui.widgetPW.setGaugeTheme(24)
+            self.ui.widgetFuel.setGaugeTheme(24)
 
-    def initAnalogGaugePW(self):
+    def initAnalogGaugeFuel(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -267,24 +268,24 @@ class MenuGauges:
 
 
         # Selecionar tema predefinido do medidor
-        self.ui.widgetPW.setGaugeTheme(24)
+        self.ui.widgetFuel.setGaugeTheme(24)
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetPW.units = " PW"
+        self.ui.widgetFuel.units = " Fuel"
         # self.ui.widgetRpm.value_fontname = "DS-Digital"
 
         # seta o valor valores de escala do Gauge:
-        self.ui.widgetPW.minValue = 0 
-        self.ui.widgetPW.maxValue = 300
-        self.ui.widgetPW.scalaCount = 15
+        self.ui.widgetFuel.minValue = 0 
+        self.ui.widgetFuel.maxValue = 100
+        self.ui.widgetFuel.scalaCount = 10
 
-    def styleAnalogGaugeMAP(self, status):
+    def styleAnalogGaugeBattery(self, status):
         if status == False:
-            self.ui.widgetMAP.setGaugeTheme(4)
+            self.ui.widgetBattery.setGaugeTheme(4)
         else:
-            self.ui.widgetMAP.setGaugeTheme(24)
+            self.ui.widgetBattery.setGaugeTheme(24)
 
-    def initAnalogGaugeMAP(self):
+    def initAnalogGaugeBattery(self):
         # *********************************************
         # customizar os medidores:
         # *********************************************
@@ -293,16 +294,16 @@ class MenuGauges:
 
 
         # Selecionar tema predefinido do medidor
-        self.ui.widgetMAP.setGaugeTheme(24)
+        self.ui.widgetBattery.setGaugeTheme(24)
 
         # seta a unidade de medida do Gauge:
-        self.ui.widgetMAP.units = " Engine\nMAP"
+        self.ui.widgetBattery.units = " Volt"
         # self.ui.widgetRpm.value_fontname = "DS-Digital"
 
         # seta o valor valores de escala do Gauge:
-        self.ui.widgetMAP.minValue = 0 
-        self.ui.widgetMAP.maxValue = 300
-        self.ui.widgetMAP.scalaCount = 15
+        self.ui.widgetBattery.minValue = 0 
+        self.ui.widgetBattery.maxValue = 20
+        self.ui.widgetBattery.scalaCount = 12
 
     def testMode(self):
         minCntValue = 0
@@ -324,10 +325,10 @@ class MenuGauges:
 
         self.ui.widgetRPM.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetRPM.minValue, self.ui.widgetRPM.maxValue))
         self.ui.widgetSpeed.updateValue(self.myValue)
-        self.ui.widgetDuty.updateValue(self.myValue)
-        self.ui.widgetPW.updateValue(self.myValue)
-        self.ui.widgetTPS.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetTPS.minValue, self.ui.widgetTPS.maxValue))
-        self.ui.widgetMAP.updateValue(self.myValue)
+        self.ui.widgetOilPressure.updateValue(self.myValue)
+        self.ui.widgetFuel.updateValue(self.myValue)
+        self.ui.widgetCoolantTemp.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetCoolantTemp.minValue, self.ui.widgetCoolantTemp.maxValue))
+        self.ui.widgetBattery.updateValue(self.myValue)
 
     def autoUpdateValue(self):
 
@@ -336,24 +337,47 @@ class MenuGauges:
             self.testMode()
             return
 
-        if (self.speeduino.connection_status == True & self.speeduino.received_data == True):
+        # OBD2
+        if (self.obd2.connection_status == True & self.obd2.received_data == True):
             self.SPDConnected = True
-            self.ui.widgetSpeed.updateValue(self.speeduino.CNT)
-            self.ui.widgetRPM.updateValue(self.speeduino.battery10)
-            self.ui.widgetDuty.updateValue(0)
-            self.ui.widgetPW.updateValue(0)
-            self.ui.widgetTPS.updateValue(0)
-            self.ui.widgetMAP.updateValue(0)
+            
+            self.ui.widgetSpeed.updateValue(self.obd2.SPEED)
+            self.ui.widgetRPM.updateValue(self.obd2.RPM)
+            self.ui.widgetOilPressure.updateValue(self.obd2.OIL_PRESSURE)
+            self.ui.widgetFuel.updateValue(self.obd2.FUEL_LEVEL)
+            self.ui.widgetCoolantTemp.updateValue(self.obd2.COOLANT_TEMP)
+            self.ui.widgetBattery.updateValue(self.obd2.BATTERY)
             self.updateAllStyleAnalogGauge()
         else:
             self.SDPConnected = False
             self.ui.widgetSpeed.updateValue(0)
             self.ui.widgetRPM.updateValue(0)
-            self.ui.widgetDuty.updateValue(0)
-            self.ui.widgetPW.updateValue(0)
-            self.ui.widgetTPS.updateValue(0)
-            self.ui.widgetMAP.updateValue(0)
+            self.ui.widgetOilPressure.updateValue(0)
+            self.ui.widgetFuel.updateValue(0)
+            self.ui.widgetCoolantTemp.updateValue(0)
+            self.ui.widgetBattery.updateValue(0)
             self.updateAllStyleAnalogGauge()
+
+        # Speeduino
+        # if (self.speeduino.connection_status == True & self.speeduino.received_data == True):
+        #     self.SPDConnected = True
+
+        #     self.ui.widgetSpeed.updateValue(self.speeduino.CNT)
+        #     self.ui.widgetRPM.updateValue(self.speeduino.battery10)
+        #     self.ui.widgetOilPressure.updateValue(0)
+        #     self.ui.widgetFuel.updateValue(0)
+        #     self.ui.CoolantTemp.updateValue(0)
+        #     self.ui.widgetBattery.updateValue(0)
+        #     self.updateAllStyleAnalogGauge()
+        # else:
+        #     self.SDPConnected = False
+        #     self.ui.widgetSpeed.updateValue(0)
+        #     self.ui.widgetRPM.updateValue(0)
+        #     self.ui.widgetOilPressure.updateValue(0)
+        #     self.ui.widgetFuel.updateValue(0)
+        #     self.ui.CoolantTemp.updateValue(0)
+        #     self.ui.widgetBattery.updateValue(0)
+        #     self.updateAllStyleAnalogGauge()
 
         # if self.oldSDPConnectedStatus != self.SDPConnected:
             
@@ -361,7 +385,7 @@ class MenuGauges:
 
         # self.ui.widgetRPM.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetRPM.minValue, self.ui.widgetRPM.maxValue))
         # 
-        # self.ui.widgetDuty.updateValue(self.myValue)
-        # self.ui.widgetPW.updateValue(self.myValue)
-        # self.ui.widgetTPS.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.widgetTPS.minValue, self.ui.widgetTPS.maxValue))
-        # self.ui.widgetMAP.updateValue(self.myValue)
+        # self.ui.widgetOilPressure.updateValue(self.myValue)
+        # self.ui.widgetFuel.updateValue(self.myValue)
+        # self.ui.CoolantTemp.updateValue(map_value(self.myValue, minCntValue, maxCntValue, self.ui.CoolantTemp.minValue, self.ui.CoolantTemp.maxValue))
+        # self.ui.widgetBattery.updateValue(self.myValue)

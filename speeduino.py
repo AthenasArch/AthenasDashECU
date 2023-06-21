@@ -4,6 +4,7 @@ import struct
 import serial.tools.list_ports
 import logging
 from PyQt5.QtCore import QThread, pyqtSignal
+# https://wiki.speeduino.com/en/reference/Interface_Protocol
 
 SPEEDUINO_CMD_A_CURR_STATUS = ('A', 120)
 SPEEDUINO_CMD_S_SIGNATURE = ('S', 8)

@@ -8,6 +8,7 @@ from athenasUtils import *
 from Menus.menuGauges import MenuGauges
 from Menus.menuConnect import MenuConnect
 from speeduino import *
+from myObd import OBD2
 
 # Importar a classe Ui_MainWindow gerada do arquivo Python convertido
 from ui_dashAthenas import *
@@ -27,9 +28,10 @@ class MainWindow(QMainWindow):
         self.timer.start(250)  # Atualizar a cada 1000ms, ou 1 segundo
 
         self.speeduino = Speeduino()
+        self.obd2 = OBD2() # Substitua 'COM23' pela porta correta no seu sistema
 
-        self.menuGauges = MenuGauges(self.ui, self.speeduino)
-        self.menuConnect = MenuConnect(self.ui, self.speeduino)
+        self.menuGauges = MenuGauges(self.ui, self.speeduino, self.obd2)
+        self.menuConnect = MenuConnect(self.ui, self.speeduino, self.obd2)
 
         # utilizo isso aqui para saber em qual pagina esta atualmente
         self.currentPage = None
@@ -62,7 +64,7 @@ class MainWindow(QMainWindow):
                 self.ui.labelComCnt.setText(f"-")
 
     def to_page_1(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_1)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_1_connect)
         self.currentPage = 1
 
         
@@ -73,7 +75,7 @@ class MainWindow(QMainWindow):
         self.currentPage = 2
 
     def to_page_3(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_3)
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_3_dash)
         self.currentPage = 3
         # self.menuGauges = MenuGauges(self.ui) # poderia instanciar o menu quando for utilizar ele para otimizar
 

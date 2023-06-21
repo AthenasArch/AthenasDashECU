@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'dashAthenasaGjeJL.ui'
+## Form generated from reading UI file 'dashAthenasRhKbeD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -238,9 +238,9 @@ class Ui_MainWindow(object):
         self.labelComCnt.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.labelComCnt.setAlignment(Qt.AlignCenter)
         self.stackedWidget.addWidget(self.page_0_main)
-        self.page_1 = QWidget()
-        self.page_1.setObjectName(u"page_1")
-        self.label_8 = QLabel(self.page_1)
+        self.page_1_connect = QWidget()
+        self.page_1_connect.setObjectName(u"page_1_connect")
+        self.label_8 = QLabel(self.page_1_connect)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setGeometry(QRect(70, 30, 551, 61))
         font5 = QFont()
@@ -250,7 +250,7 @@ class Ui_MainWindow(object):
         self.label_8.setFont(font5)
         self.label_8.setStyleSheet(u"color: #c586c0;")
         self.label_8.setAlignment(Qt.AlignCenter)
-        self.bntReturn_1 = QPushButton(self.page_1)
+        self.bntReturn_1 = QPushButton(self.page_1_connect)
         self.bntReturn_1.setObjectName(u"bntReturn_1")
         self.bntReturn_1.setGeometry(QRect(630, 30, 231, 61))
         self.bntReturn_1.setFont(font2)
@@ -274,7 +274,7 @@ class Ui_MainWindow(object):
 "            position:relative;\n"
 "            top:1px;\n"
 "        }")
-        self.comboBoxPortaCom = QComboBox(self.page_1)
+        self.comboBoxPortaCom = QComboBox(self.page_1_connect)
         self.comboBoxPortaCom.addItem("")
         self.comboBoxPortaCom.setObjectName(u"comboBoxPortaCom")
         self.comboBoxPortaCom.setGeometry(QRect(70, 150, 121, 51))
@@ -338,7 +338,7 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "")
-        self.bntCheckPorts = QPushButton(self.page_1)
+        self.bntCheckPorts = QPushButton(self.page_1_connect)
         self.bntCheckPorts.setObjectName(u"bntCheckPorts")
         self.bntCheckPorts.setGeometry(QRect(210, 150, 231, 51))
         self.bntCheckPorts.setFont(font2)
@@ -362,7 +362,7 @@ class Ui_MainWindow(object):
 "            position:relative;\n"
 "            top:1px;\n"
 "        }")
-        self.label_9 = QLabel(self.page_1)
+        self.label_9 = QLabel(self.page_1_connect)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setGeometry(QRect(70, 110, 371, 31))
         font6 = QFont()
@@ -373,9 +373,9 @@ class Ui_MainWindow(object):
         self.label_9.setStyleSheet(u"color: #c586c0;\n"
 "background-color: rgb(40, 42, 54);")
         self.label_9.setAlignment(Qt.AlignCenter)
-        self.bntConnect = QPushButton(self.page_1)
+        self.bntConnect = QPushButton(self.page_1_connect)
         self.bntConnect.setObjectName(u"bntConnect")
-        self.bntConnect.setGeometry(QRect(70, 210, 371, 61))
+        self.bntConnect.setGeometry(QRect(500, 280, 361, 61))
         self.bntConnect.setFont(font2)
         self.bntConnect.setAutoFillBackground(False)
         self.bntConnect.setStyleSheet(u"        QPushButton {\n"
@@ -397,19 +397,19 @@ class Ui_MainWindow(object):
 "            position:relative;\n"
 "            top:1px;\n"
 "        }")
-        self.debugTextTermina = QPlainTextEdit(self.page_1)
+        self.debugTextTermina = QPlainTextEdit(self.page_1_connect)
         self.debugTextTermina.setObjectName(u"debugTextTermina")
         self.debugTextTermina.setGeometry(QRect(80, 350, 781, 291))
         self.debugTextTermina.setStyleSheet(u"font: 12pt \"Consolas\";\n"
 "border-color: rgb(85, 0, 127);\n"
 "background-color: rgb(230, 230, 230);")
         self.debugTextTermina.setTabChangesFocus(False)
-        self.comboBoxPortaCom_2 = QComboBox(self.page_1)
-        self.comboBoxPortaCom_2.addItem("")
-        self.comboBoxPortaCom_2.setObjectName(u"comboBoxPortaCom_2")
-        self.comboBoxPortaCom_2.setGeometry(QRect(470, 230, 381, 41))
-        self.comboBoxPortaCom_2.setLayoutDirection(Qt.RightToLeft)
-        self.comboBoxPortaCom_2.setStyleSheet(u"QComboBox {\n"
+        self.comboBoxCmd = QComboBox(self.page_1_connect)
+        self.comboBoxCmd.addItem("")
+        self.comboBoxCmd.setObjectName(u"comboBoxCmd")
+        self.comboBoxCmd.setGeometry(QRect(470, 230, 381, 41))
+        self.comboBoxCmd.setLayoutDirection(Qt.RightToLeft)
+        self.comboBoxCmd.setStyleSheet(u"QComboBox {\n"
 "	gridline-color: rgb(255, 255, 255);\n"
 "    background-color: #282a36;\n"
 "    border: 2px solid #6272a4;\n"
@@ -468,34 +468,37 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "")
-        self.label_10 = QLabel(self.page_1)
+        self.label_10 = QLabel(self.page_1_connect)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setGeometry(QRect(470, 200, 371, 31))
         self.label_10.setFont(font6)
         self.label_10.setStyleSheet(u"color: #c586c0;\n"
 "background-color: rgb(40, 42, 54);")
         self.label_10.setAlignment(Qt.AlignCenter)
-        self.label_11 = QLabel(self.page_1)
+        self.label_11 = QLabel(self.page_1_connect)
         self.label_11.setObjectName(u"label_11")
         self.label_11.setGeometry(QRect(480, 110, 371, 31))
         self.label_11.setFont(font6)
         self.label_11.setStyleSheet(u"color: #c586c0;\n"
 "background-color: rgb(40, 42, 54);")
         self.label_11.setAlignment(Qt.AlignCenter)
-        self.comboBoxPortaCom_3 = QComboBox(self.page_1)
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.addItem("")
-        self.comboBoxPortaCom_3.setObjectName(u"comboBoxPortaCom_3")
-        self.comboBoxPortaCom_3.setGeometry(QRect(470, 150, 151, 41))
-        self.comboBoxPortaCom_3.setLayoutDirection(Qt.RightToLeft)
-        self.comboBoxPortaCom_3.setStyleSheet(u"QComboBox {\n"
+        self.comboBoxPeriod = QComboBox(self.page_1_connect)
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.addItem("")
+        self.comboBoxPeriod.setObjectName(u"comboBoxPeriod")
+        self.comboBoxPeriod.setGeometry(QRect(470, 150, 151, 41))
+        self.comboBoxPeriod.setLayoutDirection(Qt.RightToLeft)
+        self.comboBoxPeriod.setStyleSheet(u"QComboBox {\n"
 "	gridline-color: rgb(255, 255, 255);\n"
 "    background-color: #282a36;\n"
 "    border: 2px solid #6272a4;\n"
@@ -554,14 +557,110 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "")
-        self.label_12 = QLabel(self.page_1)
+        self.label_12 = QLabel(self.page_1_connect)
         self.label_12.setObjectName(u"label_12")
         self.label_12.setGeometry(QRect(630, 150, 221, 31))
         self.label_12.setFont(font6)
         self.label_12.setStyleSheet(u"color: #c586c0;\n"
 "background-color: rgb(40, 42, 54);")
         self.label_12.setAlignment(Qt.AlignCenter)
-        self.stackedWidget.addWidget(self.page_1)
+        self.label_13 = QLabel(self.page_1_connect)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setGeometry(QRect(70, 220, 111, 41))
+        self.label_13.setFont(font6)
+        self.label_13.setStyleSheet(u"color: #c586c0;\n"
+"background-color: rgb(40, 42, 54);")
+        self.label_13.setAlignment(Qt.AlignCenter)
+        self.comboBoxDevice = QComboBox(self.page_1_connect)
+        self.comboBoxDevice.addItem("")
+        self.comboBoxDevice.addItem("")
+        self.comboBoxDevice.setObjectName(u"comboBoxDevice")
+        self.comboBoxDevice.setGeometry(QRect(210, 210, 231, 51))
+        self.comboBoxDevice.setLayoutDirection(Qt.RightToLeft)
+        self.comboBoxDevice.setStyleSheet(u"QComboBox {\n"
+"	gridline-color: rgb(255, 255, 255);\n"
+"    background-color: #282a36;\n"
+"    border: 2px solid #6272a4;\n"
+"    border-radius: 8px;\n"
+"    color: #f8f8f2;\n"
+"    font-family: Verdana;\n"
+"    font-size: 18px;\n"
+"    padding: 6px;\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"    border-color: #ffffff;\n"
+"}\n"
+"\n"
+"QComboBox:editable {\n"
+"    background-color: #44475a;\n"
+"}\n"
+"\n"
+"QComboBox:!editable, QComboBox::drop-down:editable {\n"
+"    background: #282a36;\n"
+"}\n"
+"\n"
+"QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
+"    background: #282a36;\n"
+"}\n"
+"\n"
+"QComboBox:on { /* quando selecionado */\n"
+"    border-color: #f1fa8c;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 20px;\n"
+"    border-left-width: 1px;\n"
+"    border-left-color: #6272a4;\n"
+"    border-left-style: solid; /* estilo de linha da esquerda - pode ser qualquer um dos seguintes: solid, dashed, dot-dash, dot-dot-dash, none */"
+                        "\n"
+"    border-top-right-radius: 3px; /* raio superior direito da borda quando a caixa n\u00e3o est\u00e1 focada */\n"
+"    border-bottom-right-radius: 3px; /* raio inferior direito da borda quando a caixa n\u00e3o est\u00e1 focada */\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    image: url(/path/to/your/image.png); /* substitua '/path/to/your/image.png' pelo caminho correto para sua imagem */\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow:on { /* mude a cor do bot\u00e3o para laranja quando a caixa est\u00e1 focada */\n"
+"    top: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    color: #f8f8f2; /* cor do texto dos itens */\n"
+"    background-color: #3c0a8c; /* cor de fundo dos itens */\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.bntDisconnect = QPushButton(self.page_1_connect)
+        self.bntDisconnect.setObjectName(u"bntDisconnect")
+        self.bntDisconnect.setGeometry(QRect(80, 280, 361, 61))
+        self.bntDisconnect.setFont(font2)
+        self.bntDisconnect.setAutoFillBackground(False)
+        self.bntDisconnect.setStyleSheet(u"        QPushButton {\n"
+"            background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0.05 #630303, stop: 1 #4cc7c9);\n"
+"            border-radius: 8px;\n"
+"            color: #ffffff;\n"
+"            font-family: Verdana;\n"
+"            font-size: 18px;\n"
+"            font-weight: bold;\n"
+"            padding: 13px 32px;\n"
+"            text-decoration: none;\n"
+"        }\n"
+"        QPushButton:hover {\n"
+"            background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0.05 #4cc7c9, stop: 1 #630303);\n"
+"        }\n"
+"        QPushButton:pressed {\n"
+"            position:relative;\n"
+"            top:1px;\n"
+"        }")
+        self.stackedWidget.addWidget(self.page_1_connect)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
         self.bntReturn_2 = QPushButton(self.page_2)
@@ -600,9 +699,9 @@ class Ui_MainWindow(object):
         self.label_3.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_3.setAlignment(Qt.AlignCenter)
         self.stackedWidget.addWidget(self.page_2)
-        self.page_3 = QWidget()
-        self.page_3.setObjectName(u"page_3")
-        self.bntReturn_3 = QPushButton(self.page_3)
+        self.page_3_dash = QWidget()
+        self.page_3_dash.setObjectName(u"page_3_dash")
+        self.bntReturn_3 = QPushButton(self.page_3_dash)
         self.bntReturn_3.setObjectName(u"bntReturn_3")
         self.bntReturn_3.setGeometry(QRect(660, 20, 231, 61))
         self.bntReturn_3.setFont(font2)
@@ -626,7 +725,7 @@ class Ui_MainWindow(object):
 "            position:relative;\n"
 "            top:1px;\n"
 "        }")
-        self.label_28 = QLabel(self.page_3)
+        self.label_28 = QLabel(self.page_3_dash)
         self.label_28.setObjectName(u"label_28")
         self.label_28.setGeometry(QRect(70, 20, 541, 54))
         font8 = QFont()
@@ -637,7 +736,7 @@ class Ui_MainWindow(object):
         self.label_28.setLayoutDirection(Qt.LeftToRight)
         self.label_28.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_28.setAlignment(Qt.AlignCenter)
-        self.widgetSpeed = AnalogGaugeWidget(self.page_3)
+        self.widgetSpeed = AnalogGaugeWidget(self.page_3_dash)
         self.widgetSpeed.setObjectName(u"widgetSpeed")
         self.widgetSpeed.setGeometry(QRect(10, 90, 300, 300))
         sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -651,7 +750,7 @@ class Ui_MainWindow(object):
         self.widgetSpeed.setStyleSheet(u"background-color: rgb(255, 0, 127);")
         self.horizontalLayout = QHBoxLayout(self.widgetSpeed)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.widgetRPM = AnalogGaugeWidget(self.page_3)
+        self.widgetRPM = AnalogGaugeWidget(self.page_3_dash)
         self.widgetRPM.setObjectName(u"widgetRPM")
         self.widgetRPM.setGeometry(QRect(330, 90, 300, 300))
         sizePolicy1.setHeightForWidth(self.widgetRPM.sizePolicy().hasHeightForWidth())
@@ -662,51 +761,51 @@ class Ui_MainWindow(object):
         self.widgetRPM.setStyleSheet(u"background-color: rgb(255, 0, 127);")
         self.horizontalLayout_2 = QHBoxLayout(self.widgetRPM)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.widgetTPS = AnalogGaugeWidget(self.page_3)
-        self.widgetTPS.setObjectName(u"widgetTPS")
-        self.widgetTPS.setGeometry(QRect(650, 90, 300, 300))
-        sizePolicy1.setHeightForWidth(self.widgetTPS.sizePolicy().hasHeightForWidth())
-        self.widgetTPS.setSizePolicy(sizePolicy1)
-        self.widgetTPS.setMinimumSize(QSize(300, 300))
-        self.widgetTPS.setMaximumSize(QSize(600, 600))
-        self.widgetTPS.setBaseSize(QSize(300, 300))
-        self.widgetTPS.setStyleSheet(u"background-color: rgb(255, 0, 127);")
-        self.horizontalLayout_3 = QHBoxLayout(self.widgetTPS)
+        self.widgetCoolantTemp = AnalogGaugeWidget(self.page_3_dash)
+        self.widgetCoolantTemp.setObjectName(u"widgetCoolantTemp")
+        self.widgetCoolantTemp.setGeometry(QRect(650, 90, 300, 300))
+        sizePolicy1.setHeightForWidth(self.widgetCoolantTemp.sizePolicy().hasHeightForWidth())
+        self.widgetCoolantTemp.setSizePolicy(sizePolicy1)
+        self.widgetCoolantTemp.setMinimumSize(QSize(300, 300))
+        self.widgetCoolantTemp.setMaximumSize(QSize(600, 600))
+        self.widgetCoolantTemp.setBaseSize(QSize(300, 300))
+        self.widgetCoolantTemp.setStyleSheet(u"background-color: rgb(255, 0, 127);")
+        self.horizontalLayout_3 = QHBoxLayout(self.widgetCoolantTemp)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.widgetPW = AnalogGaugeWidget(self.page_3)
-        self.widgetPW.setObjectName(u"widgetPW")
-        self.widgetPW.setGeometry(QRect(10, 410, 300, 300))
-        sizePolicy1.setHeightForWidth(self.widgetPW.sizePolicy().hasHeightForWidth())
-        self.widgetPW.setSizePolicy(sizePolicy1)
-        self.widgetPW.setMinimumSize(QSize(300, 300))
-        self.widgetPW.setMaximumSize(QSize(600, 600))
-        self.widgetPW.setBaseSize(QSize(300, 300))
-        self.widgetPW.setStyleSheet(u"background-color: rgb(255, 0, 127);")
-        self.horizontalLayout_4 = QHBoxLayout(self.widgetPW)
+        self.widgetFuel = AnalogGaugeWidget(self.page_3_dash)
+        self.widgetFuel.setObjectName(u"widgetFuel")
+        self.widgetFuel.setGeometry(QRect(10, 410, 300, 300))
+        sizePolicy1.setHeightForWidth(self.widgetFuel.sizePolicy().hasHeightForWidth())
+        self.widgetFuel.setSizePolicy(sizePolicy1)
+        self.widgetFuel.setMinimumSize(QSize(300, 300))
+        self.widgetFuel.setMaximumSize(QSize(600, 600))
+        self.widgetFuel.setBaseSize(QSize(300, 300))
+        self.widgetFuel.setStyleSheet(u"background-color: rgb(255, 0, 127);")
+        self.horizontalLayout_4 = QHBoxLayout(self.widgetFuel)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.widgetDuty = AnalogGaugeWidget(self.page_3)
-        self.widgetDuty.setObjectName(u"widgetDuty")
-        self.widgetDuty.setGeometry(QRect(330, 410, 300, 300))
-        sizePolicy1.setHeightForWidth(self.widgetDuty.sizePolicy().hasHeightForWidth())
-        self.widgetDuty.setSizePolicy(sizePolicy1)
-        self.widgetDuty.setMinimumSize(QSize(300, 300))
-        self.widgetDuty.setMaximumSize(QSize(600, 600))
-        self.widgetDuty.setBaseSize(QSize(300, 300))
-        self.widgetDuty.setStyleSheet(u"background-color: rgb(255, 0, 127);")
-        self.horizontalLayout_5 = QHBoxLayout(self.widgetDuty)
+        self.widgetOilPressure = AnalogGaugeWidget(self.page_3_dash)
+        self.widgetOilPressure.setObjectName(u"widgetOilPressure")
+        self.widgetOilPressure.setGeometry(QRect(330, 410, 300, 300))
+        sizePolicy1.setHeightForWidth(self.widgetOilPressure.sizePolicy().hasHeightForWidth())
+        self.widgetOilPressure.setSizePolicy(sizePolicy1)
+        self.widgetOilPressure.setMinimumSize(QSize(300, 300))
+        self.widgetOilPressure.setMaximumSize(QSize(600, 600))
+        self.widgetOilPressure.setBaseSize(QSize(300, 300))
+        self.widgetOilPressure.setStyleSheet(u"background-color: rgb(255, 0, 127);")
+        self.horizontalLayout_5 = QHBoxLayout(self.widgetOilPressure)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.widgetMAP = AnalogGaugeWidget(self.page_3)
-        self.widgetMAP.setObjectName(u"widgetMAP")
-        self.widgetMAP.setGeometry(QRect(650, 410, 300, 300))
-        sizePolicy1.setHeightForWidth(self.widgetMAP.sizePolicy().hasHeightForWidth())
-        self.widgetMAP.setSizePolicy(sizePolicy1)
-        self.widgetMAP.setMinimumSize(QSize(300, 300))
-        self.widgetMAP.setMaximumSize(QSize(600, 600))
-        self.widgetMAP.setBaseSize(QSize(300, 300))
-        self.widgetMAP.setStyleSheet(u"background-color: rgb(255, 0, 127);")
-        self.horizontalLayout_6 = QHBoxLayout(self.widgetMAP)
+        self.widgetBattery = AnalogGaugeWidget(self.page_3_dash)
+        self.widgetBattery.setObjectName(u"widgetBattery")
+        self.widgetBattery.setGeometry(QRect(650, 410, 300, 300))
+        sizePolicy1.setHeightForWidth(self.widgetBattery.sizePolicy().hasHeightForWidth())
+        self.widgetBattery.setSizePolicy(sizePolicy1)
+        self.widgetBattery.setMinimumSize(QSize(300, 300))
+        self.widgetBattery.setMaximumSize(QSize(600, 600))
+        self.widgetBattery.setBaseSize(QSize(300, 300))
+        self.widgetBattery.setStyleSheet(u"background-color: rgb(255, 0, 127);")
+        self.horizontalLayout_6 = QHBoxLayout(self.widgetBattery)
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.stackedWidget.addWidget(self.page_3)
+        self.stackedWidget.addWidget(self.page_3_dash)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -753,23 +852,32 @@ class Ui_MainWindow(object):
 "\n"
 "3 - Pressione o bot\u00e3o de conectar\n"
 "", None))
-        self.comboBoxPortaCom_2.setItemText(0, QCoreApplication.translate("MainWindow", u"     -", None))
+        self.comboBoxCmd.setItemText(0, QCoreApplication.translate("MainWindow", u"     -", None))
 
-        self.comboBoxPortaCom_2.setCurrentText(QCoreApplication.translate("MainWindow", u"     -", None))
+        self.comboBoxCmd.setCurrentText(QCoreApplication.translate("MainWindow", u"     -", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"3 - SELECIONE UM COMANDO:", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"2 - PERIODO DE REQUISI\u00c7\u00c3O", None))
-        self.comboBoxPortaCom_3.setItemText(0, QCoreApplication.translate("MainWindow", u"0.25", None))
-        self.comboBoxPortaCom_3.setItemText(1, QCoreApplication.translate("MainWindow", u"0.50", None))
-        self.comboBoxPortaCom_3.setItemText(2, QCoreApplication.translate("MainWindow", u"0.75", None))
-        self.comboBoxPortaCom_3.setItemText(3, QCoreApplication.translate("MainWindow", u"1", None))
-        self.comboBoxPortaCom_3.setItemText(4, QCoreApplication.translate("MainWindow", u"2", None))
-        self.comboBoxPortaCom_3.setItemText(5, QCoreApplication.translate("MainWindow", u"4", None))
-        self.comboBoxPortaCom_3.setItemText(6, QCoreApplication.translate("MainWindow", u"6", None))
-        self.comboBoxPortaCom_3.setItemText(7, QCoreApplication.translate("MainWindow", u"8", None))
-        self.comboBoxPortaCom_3.setItemText(8, QCoreApplication.translate("MainWindow", u"10", None))
+        self.comboBoxPeriod.setItemText(0, QCoreApplication.translate("MainWindow", u"0.01", None))
+        self.comboBoxPeriod.setItemText(1, QCoreApplication.translate("MainWindow", u"0.05", None))
+        self.comboBoxPeriod.setItemText(2, QCoreApplication.translate("MainWindow", u"0.10", None))
+        self.comboBoxPeriod.setItemText(3, QCoreApplication.translate("MainWindow", u"0.25", None))
+        self.comboBoxPeriod.setItemText(4, QCoreApplication.translate("MainWindow", u"0.50", None))
+        self.comboBoxPeriod.setItemText(5, QCoreApplication.translate("MainWindow", u"0.75", None))
+        self.comboBoxPeriod.setItemText(6, QCoreApplication.translate("MainWindow", u"1", None))
+        self.comboBoxPeriod.setItemText(7, QCoreApplication.translate("MainWindow", u"2", None))
+        self.comboBoxPeriod.setItemText(8, QCoreApplication.translate("MainWindow", u"4", None))
+        self.comboBoxPeriod.setItemText(9, QCoreApplication.translate("MainWindow", u"6", None))
+        self.comboBoxPeriod.setItemText(10, QCoreApplication.translate("MainWindow", u"8", None))
+        self.comboBoxPeriod.setItemText(11, QCoreApplication.translate("MainWindow", u"10", None))
 
-        self.comboBoxPortaCom_3.setCurrentText(QCoreApplication.translate("MainWindow", u"0.25", None))
+        self.comboBoxPeriod.setCurrentText(QCoreApplication.translate("MainWindow", u"0.01", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"SEGUNDOS", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"DEVICE:", None))
+        self.comboBoxDevice.setItemText(0, QCoreApplication.translate("MainWindow", u"OBD2", None))
+        self.comboBoxDevice.setItemText(1, QCoreApplication.translate("MainWindow", u"SPEEDUINO", None))
+
+        self.comboBoxDevice.setCurrentText(QCoreApplication.translate("MainWindow", u"OBD2", None))
+        self.bntDisconnect.setText(QCoreApplication.translate("MainWindow", u"DESCONECTAR", None))
         self.bntReturn_2.setText(QCoreApplication.translate("MainWindow", u"RETURN", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"PAGE 3", None))
         self.bntReturn_3.setText(QCoreApplication.translate("MainWindow", u"Return", None))
